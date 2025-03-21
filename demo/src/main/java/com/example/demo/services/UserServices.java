@@ -1,10 +1,13 @@
-package com.services;
+package com.example.demo.services;
 import org.springframework.stereotype.Service;
-import com.Models.User;
-import com.repository.UserRepository;
+
+import com.example.demo.Models.User;
+import com.example.demo.repository.UserRepository;
+
+import jakarta.transaction.Transactional;
+
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired; // Helps inject dependencies
-
 
 // creating a Java class that controls how users are retrieved, saved, or searched for.
 
@@ -32,10 +35,12 @@ public class UserServices {
          */
        return userRepository.findByUsername(username);
     }
+    @Transactional
     public User createUser(User user){
         /*
          * This method automatiically creates a new user into the MySQL
          */
+        user.setID(null);
         return userRepository.save(user);
     }
 

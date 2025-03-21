@@ -1,4 +1,4 @@
-package com.Models;
+package com.example.demo.Models;
 
 import jakarta.persistence.*;
 
@@ -15,7 +15,8 @@ import jakarta.persistence.*;
 @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id;
 
 private String username;
- private String email; //No getter for password for priv reasons, supress the yellow line 
+ private String email; 
+ //No getter for password for priv reasons, supress the yellow line 
  @SuppressWarnings("unused") 
  private String password;
 
@@ -24,7 +25,9 @@ private String username;
     public Long getId() {
         return id;
     }
-
+public void setID(Long iden){
+    id = iden;
+}
     public String getUsername() {
         return this.username;
     }

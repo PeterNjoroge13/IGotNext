@@ -1,7 +1,8 @@
-package com.repository;
+package com.example.demo.repository;
 
-import com.Models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo.Models.User;
 
 /*
  * This interface acts as a bridge between the User entity and the database.
@@ -12,9 +13,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * "Hey, this is a repository for the User table, and the id is a Long number."
  * 
  * How it works:
- * - Spring Boot automatically creates an implementation of this interface at runtime.
- * - The JpaRepository<User, Long> tells Spring that this repository is for the User entity,
- *   and the primary key (id) is of type Long.
  * - The method findByUsername(String username) is a custom query method. Spring generates
  *   the SQL query automatically based on the method name. For example:
  *   "SELECT * FROM users WHERE username = ?"

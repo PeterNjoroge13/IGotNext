@@ -32,13 +32,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
 		<!-- Spring Boot Data JPA (for Database Interaction) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-validation</artifactId>
+</dependency>
 		<!-- MySQL Driver (Connects to MySQL) -->
 		<dependency>
 			<groupId>com.mysql</groupId>
@@ -73,10 +79,7 @@
 		</plugins>
 	</build>
 
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-data-jpa</artifactId>
-</dependency>
+
 
 	<!-- Repositories for Dependencies -->
 	<repositories>
