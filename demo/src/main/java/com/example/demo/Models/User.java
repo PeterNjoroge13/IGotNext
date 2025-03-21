@@ -11,13 +11,16 @@ import jakarta.persistence.*;
         We are making in gen automatically when user is created.
          ID # links to row in the table */
      
-@Id //tells Spring this field is the primary key // Automatically generates the ID when a new user is added to the database
+@Id //tells Spring this field is the primary key 
+// Automatically generates the ID when a new user is added to the database
 @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id;
+
+
 
 private String username;
  private String email; 
  //No getter for password for priv reasons, supress the yellow line 
- @SuppressWarnings("unused") 
+
  private String password;
 
 
@@ -46,5 +49,8 @@ public void setID(Long iden){
 
     public void setPassword(String pass) {
         this.password = pass;
+    }
+    public String getPassword( ){
+        return this.password;
     }
 }

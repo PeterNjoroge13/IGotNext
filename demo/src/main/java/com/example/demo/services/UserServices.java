@@ -3,11 +3,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.Models.User;
 import com.example.demo.repository.UserRepository;
-
 import jakarta.transaction.Transactional;
-
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired; // Helps inject dependencies
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 // creating a Java class that controls how users are retrieved, saved, or searched for.
 
@@ -20,6 +19,10 @@ public class UserServices {
 
     @Autowired 
     private UserRepository userRepository;
+
+// injecting an instance of the securityConfig passWordEncoder to encrypt user passwords
+@Autowired
+private PasswordEncoder passwordEncoder;
 
     public List<User> getAllUsers(){
         /*
@@ -41,6 +44,8 @@ public class UserServices {
          * This method automatiically creates a new user into the MySQL
          */
         user.setID(null);
+       //When we create the user in the db set the password to the encrypted passwoord weve made
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
