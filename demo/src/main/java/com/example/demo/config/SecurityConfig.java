@@ -29,16 +29,22 @@ public class SecurityConfig {
     }
     
     
-    @Bean // Defines the security filter chain for HTTP requests
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-            .csrf(csrf -> csrf.disable()) // Disables CSRF protection (useful for testing, enable in production)
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/users", "/api/auth/login").permitAll() // Allows public access to these endpoints
-                .anyRequest().authenticated() // Requires authentication for all other endpoints
-            )
-            .httpBasic(httpBasic -> {}); // Enables basic authentication (username and password)
+    /**
+     * Configures authentication rules for API endpoints.
+     */
+    @Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+        .csrf(csrf -> csrf.disable()) // Disable CSRF (enable in production)
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/api/users", "/api/users/**", "/api/auth/login").permitAll() // Allow user registration & login
+            .anyRequest().authenticated() // Require authentication for everything else
+        )
+        .sessionManagement(session -> 
+            session.sessionCreationPolicy(org.springframework.security.config.http.SessionCreationPolicy.STATELESS)) // Use JWT (no sessions)
+        .httpBasic(httpBasic -> {}); // Enable basic authentication (optional)
 
-        return http.build(); // Builds and returns the security configuration
-    }
+    return http.build(); // Apply security settings
+}
+
 }
